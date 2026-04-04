@@ -33,8 +33,7 @@
     "scripts": [
       "vendor/js-yaml.min.js",
       "background.js"
-    ],
-    "service_worker": "background.js"
+    ]
   },
   "content_scripts": [
     {
