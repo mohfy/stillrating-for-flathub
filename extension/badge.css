@@ -1,0 +1,290 @@
+.stillrating-info-card {
+  appearance: none;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 calc(33.333% - 0.5rem);
+  flex-direction: column;
+  gap: 0.32rem;
+  justify-content: center;
+  min-width: 0;
+  opacity: 0;
+  padding: 0.5rem 0.75rem;
+  transform: translateY(4px);
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+@media (min-width: 40rem) {
+  .stillrating-info-card {
+    flex-basis: 0;
+  }
+}
+
+.stillrating-info-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stillrating-info-card:hover,
+.stillrating-info-card:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  outline: none;
+}
+
+.stillrating-info-card__pill {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: var(--stillrating-value-color, #888888);
+  display: inline-flex;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 1;
+  min-width: 4.75rem;
+  padding: 0.42rem 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stillrating-info-card__label {
+  color: rgba(255, 255, 255, 0.62);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.stillrating-modal {
+  background: rgba(9, 11, 20, 0.72);
+  backdrop-filter: blur(12px);
+  inset: 0;
+  position: fixed;
+  z-index: 2147483647;
+}
+
+.stillrating-modal__shell {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 40rem) {
+  .stillrating-modal__shell {
+    align-items: center;
+    padding: 1.25rem;
+  }
+}
+
+.stillrating-modal__panel {
+  background: rgba(30, 30, 46, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  color: #f0f0f4;
+  max-width: 32rem;
+  overflow: hidden;
+  padding: 1.75rem 1.5rem 1.5rem;
+  position: relative;
+  text-align: left;
+  transform: translateY(0);
+  transition: transform 180ms ease;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .stillrating-modal__panel {
+    padding: 2rem;
+  }
+}
+
+.stillrating-modal__close-wrap {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+.stillrating-modal__close-button {
+  align-items: center;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0;
+  border-radius: 999px;
+  color: #f0f0f4;
+  cursor: pointer;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+  width: 2rem;
+}
+
+.stillrating-modal__close-button:hover,
+.stillrating-modal__close-button:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 2px rgba(84, 162, 255, 0.22);
+  outline: none;
+}
+
+.stillrating-modal__close-button svg {
+  fill: currentColor;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.stillrating-modal__hero {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.65rem;
+}
+
+.stillrating-modal__hero-pill,
+.stillrating-modal__item-pill {
+  align-items: center;
+  background: rgba(84, 162, 255, 0.14);
+  border-radius: 999px;
+  color: var(--stillrating-value-color, #f0f0f4);
+  display: inline-flex;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  min-width: 4rem;
+  padding: 0.45rem 0.85rem;
+  text-align: center;
+}
+
+.stillrating-modal__hero-pill {
+  box-shadow: inset 0 0 0 1px rgba(84, 162, 255, 0.16);
+  min-width: 5rem;
+}
+
+.stillrating-modal__item-pill {
+  font-size: 0.82rem;
+  min-width: 4.5rem;
+}
+
+.stillrating-modal__item-pill--neutral {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  color: #f0f0f4;
+}
+
+.stillrating-modal__title {
+  color: #f8f8fb;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0 2.5rem 1.25rem;
+  text-align: center;
+}
+
+.stillrating-modal__list {
+  background: rgba(17, 20, 31, 0.7);
+  border-radius: 0.9rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stillrating-modal__item {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem 1.05rem;
+}
+
+.stillrating-modal__item + .stillrating-modal__item {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stillrating-modal__item-pill-wrap {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.stillrating-modal__item-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.stillrating-modal__item-title {
+  color: #f8f8fb;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.stillrating-modal__item-body {
+  color: rgba(240, 240, 244, 0.72);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+  min-width: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

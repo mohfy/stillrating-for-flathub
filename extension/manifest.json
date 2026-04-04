@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "StillRating for Flathub",
+  "version": "1.0.0",
+  "description": "Shows StillRating badges on Flathub app pages using the StillHQ saDB repository.",
+  "icons": {
+    "48": "icons/io.stillhq.stillCenter.svg",
+    "96": "icons/io.stillhq.stillCenter.svg",
+    "128": "icons/io.stillhq.stillCenter.svg"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://flathub.org/*",
+    "https://gitlab.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "vendor/js-yaml.min.js",
+      "background.js"
+    ],
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://flathub.org/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "badge.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
