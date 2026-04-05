@@ -7,7 +7,67 @@
 
   window.__stillRatingForFlathubLoaded = true;
 
-  const api = browser;
+  const browserApi = globalThis.browser;
+  const chromeApi = globalThis.chrome;
+
+  if (!(browserApi?.storage?.local || chromeApi?.storage?.local)) {
+    console.warn("StillRating: extension storage API is unavailable in this browser.");
+    return;
+  }
+
+  function getChromeRuntimeLastError() {
+    const lastError = chromeApi?.runtime?.lastError;
+
+    return lastError ? new Error(lastError.message) : null;
+  }
+
+  function chromeStorageGet(key) {
+    return new Promise((resolve, reject) => {
+      chromeApi.storage.local.get(key, (items) => {
+        const error = getChromeRuntimeLastError();
+
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(items);
+      });
+    });
+  }
+
+  function chromeStorageSet(value) {
+    return new Promise((resolve, reject) => {
+      chromeApi.storage.local.set(value, () => {
+        const error = getChromeRuntimeLastError();
+
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve();
+      });
+    });
+  }
+
+  const api = browserApi
+    ? {
+        storage: {
+          local: {
+            get: (key) => browserApi.storage.local.get(key),
+            set: (value) => browserApi.storage.local.set(value)
+          }
+        }
+      }
+    : {
+        storage: {
+          local: {
+            get: chromeStorageGet,
+            set: chromeStorageSet
+          }
+        }
+      };
 
   const BADGE_ID = "stillrating-for-flathub-badge";
   const MODAL_ID = "stillrating-for-flathub-modal";
@@ -652,6 +712,20 @@
     return injectStillRatingIntoInfoSection(appData, appId, infoSection);
   }
 
+  function hasInjectedBadgeForApp(appId = extractAppIdFromUrl()) {
+    if (!appId) {
+      return false;
+    }
+
+    const existingBadge = document.getElementById(BADGE_ID);
+
+    return Boolean(
+      existingBadge?.dataset.appId === appId &&
+        existingBadge.dataset.placement === "app-info" &&
+        document.contains(existingBadge)
+    );
+  }
+
   async function requestAppData(appId) {
     try {
       return await findAppById(appId);
@@ -671,7 +745,6 @@
     if (!appId) {
       removeInjectedBadge();
       closeStillRatingModal();
-      disconnectObserver();
       return;
     }
 
@@ -688,9 +761,7 @@
         return;
       }
 
-      if (injectStillRatingBadge(appData)) {
-        disconnectObserver();
-      } else if (currentObserver) {
+      if (!injectStillRatingBadge(appData) && currentObserver) {
         // Some Flathub renders finish quietly after the first pass, so keep
         // retrying briefly even if no new DOM mutation fires.
         scheduleInjectionAttempt(250);
@@ -711,11 +782,6 @@
     disconnectObserver();
     pageObservationStartedAt = Date.now();
 
-    if (!extractAppIdFromUrl()) {
-      removeInjectedBadge();
-      return;
-    }
-
     if (!document.body) {
       return;
     }
@@ -726,7 +792,11 @@
         return;
       }
 
-      scheduleInjectionAttempt(50);
+      const currentAppId = extractAppIdFromUrl();
+
+      if (currentAppId && !hasInjectedBadgeForApp(currentAppId)) {
+        scheduleInjectionAttempt(50);
+      }
     });
 
     currentObserver.observe(document.body, {
@@ -734,7 +804,11 @@
       subtree: true
     });
 
-    scheduleInjectionAttempt(0);
+    if (extractAppIdFromUrl()) {
+      scheduleInjectionAttempt(0);
+    } else {
+      removeInjectedBadge();
+    }
   }
 
   function handlePotentialNavigation() {
@@ -745,6 +819,7 @@
     }
 
     clearNavigationRescans();
+    window.clearTimeout(scheduledAttempt);
     lastHandledUrl = nextUrl;
     requestToken += 1;
     closeStillRatingModal();

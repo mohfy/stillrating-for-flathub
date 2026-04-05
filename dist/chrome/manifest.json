@@ -3,24 +3,10 @@
   "name": "StillRating for Flathub",
   "version": "1.0.1",
   "description": "Shows StillRating badges on Flathub app pages using the StillHQ saDB repository.",
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "stillrating-for-flathub@mohfy.dev",
-      "strict_min_version": "140.0",
-      "data_collection_permissions": {
-        "required": [
-          "none"
-        ]
-      }
-    },
-    "gecko_android": {
-      "strict_min_version": "142.0"
-    }
-  },
   "icons": {
-    "48": "icons/io.stillhq.stillCenter.svg",
-    "96": "icons/io.stillhq.stillCenter.svg",
-    "128": "icons/io.stillhq.stillCenter.svg"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "permissions": [
     "storage"
