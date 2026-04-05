@@ -6,8 +6,8 @@ import { fileURLToPath } from "node:url";
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
 const sourceDir = resolve(repoRoot, "extension");
-const distDir = resolve(repoRoot, "dist");
-const outputDir = resolve(distDir, "chrome");
+const buildDir = resolve(repoRoot, ".build");
+const outputDir = resolve(buildDir, "chrome");
 const manifestPath = resolve(outputDir, "manifest.json");
 
 rmSync(outputDir, { force: true, recursive: true });
@@ -30,7 +30,7 @@ if (!existsSync(manifestPath)) {
 }
 
 const archiveName = `stillrating-for-flathub-chrome-v${manifest.version}.zip`;
-const archivePath = resolve(distDir, archiveName);
+const archivePath = resolve(outputDir, archiveName);
 
 rmSync(archivePath, { force: true });
 
