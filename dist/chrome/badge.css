@@ -1,0 +1,444 @@
+.stillrating-info-card {
+  --stillrating-card-text-color: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 1
+  );
+  --stillrating-card-pill-bg: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 0.6
+  );
+  --stillrating-card-label-color: oklch(
+    var(--flathub-sonic-silver, 56.64% 0.0074 295.34) / 1
+  );
+  --stillrating-card-hover-bg: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 0.05
+  );
+  --stillrating-card-active-bg: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 0.08
+  );
+  --stillrating-card-ring: oklch(
+    var(--flathub-celestial-blue, 63.85% 0.1314 251.94) / 0.5
+  );
+  appearance: none;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 0;
+  background-color: transparent;
+  color: var(--stillrating-card-text-color);
+  cursor: pointer;
+  display: flex;
+  flex: 1 1 calc(33.333% - 0.5rem);
+  flex-direction: column;
+  gap: 0.32rem;
+  justify-content: center;
+  min-width: 0;
+  opacity: 0;
+  padding: 0.5rem 0.75rem;
+  transform: translateY(4px);
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.dark .stillrating-info-card {
+  --stillrating-card-text-color: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 1
+  );
+  --stillrating-card-pill-bg: oklch(
+    var(--flathub-granite-gray, 48.56% 0.0136 312.8) / 0.6
+  );
+  --stillrating-card-label-color: oklch(
+    var(--flathub-spanish-gray, 68.62% 0.0046 91.47) / 0.8
+  );
+  --stillrating-card-hover-bg: oklch(
+    var(--flathub-lotion, 98.48% 0 0) / 0.05
+  );
+  --stillrating-card-active-bg: oklch(
+    var(--flathub-lotion, 98.48% 0 0) / 0.08
+  );
+}
+
+@media (min-width: 40rem) {
+  .stillrating-info-card {
+    flex-basis: 0;
+  }
+}
+
+.stillrating-info-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stillrating-info-card:hover {
+  background-color: var(--stillrating-card-hover-bg);
+}
+
+.stillrating-info-card:active {
+  background-color: var(--stillrating-card-active-bg);
+}
+
+.stillrating-info-card:focus-visible {
+  box-shadow: 0 0 0 2px var(--stillrating-card-ring);
+  outline: none;
+}
+
+.stillrating-info-card__pill {
+  align-items: center;
+  background: var(--stillrating-card-pill-bg);
+  border-radius: 999px;
+  color: var(--stillrating-value-color, #888888);
+  display: inline-flex;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 1;
+  min-width: 4.75rem;
+  padding: 0.42rem 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stillrating-info-card__label {
+  color: var(--stillrating-card-label-color);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.stillrating-modal {
+  --stillrating-modal-overlay-bg: rgba(15, 23, 43, 0.2);
+  --stillrating-modal-panel-bg: oklch(
+    var(--flathub-white, 100% 0 0) / 0.96
+  );
+  --stillrating-modal-panel-border: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 0.95
+  );
+  --stillrating-modal-panel-shadow: 0 24px 80px rgba(15, 23, 43, 0.18);
+  --stillrating-modal-text: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 1
+  );
+  --stillrating-modal-heading: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 1
+  );
+  --stillrating-modal-subtext: oklch(
+    var(--flathub-granite-gray, 48.56% 0.0136 312.8) / 1
+  );
+  --stillrating-modal-list-bg: oklch(
+    var(--flathub-white, 100% 0 0) / 0.8
+  );
+  --stillrating-modal-list-border: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 1
+  );
+  --stillrating-modal-item-separator: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 1
+  );
+  --stillrating-modal-pill-bg: oklch(
+    var(--flathub-celestial-blue, 63.85% 0.1314 251.94) / 0.12
+  );
+  --stillrating-modal-pill-border: oklch(
+    var(--flathub-celestial-blue, 63.85% 0.1314 251.94) / 0.14
+  );
+  --stillrating-modal-neutral-pill-bg: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 0.85
+  );
+  --stillrating-modal-neutral-pill-border: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 1
+  );
+  --stillrating-modal-close-bg: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 0.85
+  );
+  --stillrating-modal-close-hover-bg: oklch(
+    var(--flathub-gainsborow, 89.56% 0.0045 91.45) / 1
+  );
+  --stillrating-modal-close-icon: oklch(
+    var(--flathub-dark-gunmetal, 25.61% 0.0354 296.84) / 1
+  );
+  --stillrating-modal-ring: oklch(
+    var(--flathub-celestial-blue, 63.85% 0.1314 251.94) / 0.22
+  );
+  background: var(--stillrating-modal-overlay-bg);
+  backdrop-filter: blur(12px);
+  inset: 0;
+  opacity: 0;
+  position: fixed;
+  transition: opacity 180ms ease;
+  z-index: 2147483647;
+}
+
+.stillrating-modal.is-visible {
+  opacity: 1;
+}
+
+.stillrating-modal.is-closing {
+  opacity: 0;
+}
+
+.dark .stillrating-modal {
+  --stillrating-modal-overlay-bg: rgba(9, 11, 20, 0.72);
+  --stillrating-modal-panel-bg: rgba(30, 30, 46, 0.95);
+  --stillrating-modal-panel-border: rgba(255, 255, 255, 0.12);
+  --stillrating-modal-panel-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  --stillrating-modal-text: #f0f0f4;
+  --stillrating-modal-heading: #f8f8fb;
+  --stillrating-modal-subtext: rgba(240, 240, 244, 0.72);
+  --stillrating-modal-list-bg: rgba(17, 20, 31, 0.7);
+  --stillrating-modal-list-border: rgba(255, 255, 255, 0.06);
+  --stillrating-modal-item-separator: rgba(255, 255, 255, 0.08);
+  --stillrating-modal-pill-bg: rgba(84, 162, 255, 0.14);
+  --stillrating-modal-pill-border: rgba(84, 162, 255, 0.16);
+  --stillrating-modal-neutral-pill-bg: rgba(255, 255, 255, 0.09);
+  --stillrating-modal-neutral-pill-border: rgba(255, 255, 255, 0.06);
+  --stillrating-modal-close-bg: rgba(255, 255, 255, 0.08);
+  --stillrating-modal-close-hover-bg: rgba(255, 255, 255, 0.14);
+  --stillrating-modal-close-icon: #f0f0f4;
+  --stillrating-modal-ring: rgba(84, 162, 255, 0.22);
+}
+
+.stillrating-modal__shell {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 40rem) {
+  .stillrating-modal__shell {
+    align-items: center;
+    padding: 1.25rem;
+  }
+}
+
+.stillrating-modal__panel {
+  background: var(--stillrating-modal-panel-bg);
+  border: 1px solid var(--stillrating-modal-panel-border);
+  border-radius: 1rem;
+  box-shadow: var(--stillrating-modal-panel-shadow);
+  color: var(--stillrating-modal-text);
+  max-width: 32rem;
+  opacity: 0;
+  overflow: hidden;
+  padding: 1.75rem 1.5rem 1.5rem;
+  position: relative;
+  text-align: left;
+  transform: translateY(18px) scale(0.97);
+  transition:
+    opacity 220ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+  width: 100%;
+}
+
+.stillrating-modal.is-visible .stillrating-modal__panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stillrating-modal.is-closing .stillrating-modal__panel {
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+}
+
+@media (min-width: 40rem) {
+  .stillrating-modal__panel {
+    padding: 2rem;
+  }
+}
+
+.stillrating-modal__close-wrap {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+.stillrating-modal__close-button {
+  align-items: center;
+  appearance: none;
+  background: var(--stillrating-modal-close-bg);
+  border: 0;
+  border-radius: 999px;
+  color: var(--stillrating-modal-close-icon);
+  cursor: pointer;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+  width: 2rem;
+}
+
+.stillrating-modal__close-button:hover,
+.stillrating-modal__close-button:focus-visible {
+  background: var(--stillrating-modal-close-hover-bg);
+  box-shadow: 0 0 0 2px var(--stillrating-modal-ring);
+  outline: none;
+}
+
+.stillrating-modal__close-button svg {
+  fill: currentColor;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.stillrating-modal__hero {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.65rem;
+}
+
+.stillrating-modal__hero-pill,
+.stillrating-modal__item-pill {
+  align-items: center;
+  background: var(--stillrating-modal-pill-bg);
+  border-radius: 999px;
+  color: var(--stillrating-value-color, #f0f0f4);
+  display: inline-flex;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  min-width: 4rem;
+  padding: 0.45rem 0.85rem;
+  text-align: center;
+}
+
+.stillrating-modal__hero-pill {
+  box-shadow: inset 0 0 0 1px var(--stillrating-modal-pill-border);
+  min-width: 5rem;
+}
+
+.stillrating-modal__item-pill {
+  font-size: 0.82rem;
+  min-width: 4.5rem;
+}
+
+.stillrating-modal__item-pill--neutral {
+  background: var(--stillrating-modal-neutral-pill-bg);
+  box-shadow: inset 0 0 0 1px var(--stillrating-modal-neutral-pill-border);
+  color: var(--stillrating-modal-text);
+}
+
+.stillrating-modal__title {
+  color: var(--stillrating-modal-heading);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0 2.5rem 1.25rem;
+  text-align: center;
+}
+
+.stillrating-modal__list {
+  background: var(--stillrating-modal-list-bg);
+  border-radius: 0.9rem;
+  box-shadow: inset 0 0 0 1px var(--stillrating-modal-list-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stillrating-modal__item {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem 1.05rem;
+}
+
+.stillrating-modal__item + .stillrating-modal__item {
+  border-top: 1px solid var(--stillrating-modal-item-separator);
+}
+
+.stillrating-modal__item-pill-wrap {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.stillrating-modal__item-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.stillrating-modal__item-title {
+  color: var(--stillrating-modal-heading);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.stillrating-modal__item-body {
+  color: var(--stillrating-modal-subtext);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+  min-width: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stillrating-info-card,
+  .stillrating-modal,
+  .stillrating-modal__panel,
+  .stillrating-modal__close-button {
+    transition: none;
+  }
+
+  .stillrating-info-card {
+    transform: none;
+  }
+
+  .stillrating-modal__panel {
+    transform: none;
+  }
+}
