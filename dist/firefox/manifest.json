@@ -26,21 +26,15 @@
     "storage"
   ],
   "host_permissions": [
-    "https://flathub.org/*",
-    "https://gitlab.com/*"
+    "https://flathub.org/*"
   ],
-  "background": {
-    "scripts": [
-      "vendor/js-yaml.min.js",
-      "background.js"
-    ]
-  },
   "content_scripts": [
     {
       "matches": [
         "https://flathub.org/*"
       ],
       "js": [
+        "vendor/js-yaml.min.js",
         "content.js"
       ],
       "css": [
